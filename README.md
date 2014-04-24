@@ -1,4 +1,4 @@
 uthscblogs-child-news
 =====================
 
-Child theme for the UTHSC news site
+A [uthscblogs](https://github.com/uthsc/uthscblogs) Child theme for the UTHSC news site
