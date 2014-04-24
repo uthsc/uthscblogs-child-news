@@ -1,5 +1,81 @@
 <?php
 
+function register_uthsc_childtheme_styles() {
+    wp_register_style('uthsc-child-stylesheet', get_stylesheet_directory_uri() . '/css/style.css');
+    wp_enqueue_style('uthsc-child-stylesheet');
+}
+
+add_action('wp_enqueue_scripts', 'register_uthsc_childtheme_styles', 11);
+
+function get_uthsc_orbit_slider() {
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
+
+    <?php if ($paged < 2) { ?>
+        <?php
+
+        // args
+        $args = array(
+            'numberposts' => -1,
+
+
+            'meta_query' => array(
+                array(
+                    'key' => 'add_to_slider', // name of custom field
+                    'value' => '"Add To Slider"', // matches exaclty "red", not just red. This prevents a match for "acquired"
+                    'compare' => 'LIKE'
+                )
+            )
+        );
+
+        // get results
+        $the_query = new WP_Query( $args );
+
+        // The Loop
+        ?>
+        <?php if( $the_query->have_posts() ): ?>
+            <div class="hide-for-small-down">
+            <ul class="example-orbit" data-orbit>
+                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                    <li>
+                        <img src="<?php echo get_field('slider_image',get_the_id())?>" alt="slider-image" />
+                        <div class="orbit-caption">
+                            <?php echo get_the_title( get_the_id() ) ?>
+                        </div>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+            </div>
+        <?php endif; ?>
+
+        <?php wp_reset_query();  // Restore global post data stomped by the_post(). ?>
+
+    <?php }
+}
+
+add_filter( 'nav_menu_css_class', 'thd_menu_classes', 10, 2 );
+function thd_menu_classes( $classes , $item ){
+
+    $post_types = array(
+        'news_notes' => '/in-the-media',
+        'announcement' => '/announcements'
+    );
+
+    if ( get_post_type() == 'news_notes' || is_archive( 'news_notes' ) ) {
+        // find the url you want and add the class you want
+        if ( $item->url == '/in-the-media' ) {
+            $classes = str_replace( 'menu-item', 'menu-item active', $classes );
+            remove_filter( 'nav_menu_css_class', 'thd_menu_classes', 10, 2 );
+        }
+    } elseif ( get_post_type() == 'announcement' ) {
+        // find the url you want and add the class you want
+        if ( $item->url == '/announcements' ) {
+            $classes = str_replace( 'menu-item', 'menu-item active', $classes );
+            remove_filter( 'nav_menu_css_class', 'thd_menu_classes', 10, 2 );
+        }
+    }
+
+    return $classes;
+}
 
 function get_the_publisher($id) {
 
@@ -18,47 +94,3 @@ function get_the_publisher($id) {
 
     return $publisher_link;
 }
-
-function register_uthsc_childtheme_styles() {
-    wp_register_style('uthsc-child-stylesheet', get_stylesheet_directory_uri() . '/css/style.css');
-    wp_enqueue_style('uthsc-child-stylesheet');
-}
-add_action('wp_enqueue_scripts', 'register_uthsc_childtheme_styles', 11);
-
-
-/**
- * Auto-subscribe or unsubscribe an Edit Flow user group when a post changes status
- *
- * @see http://editflow.org/extend/auto-subscribe-user-groups-for-notifications/
- *
- * @param string $new_status New post status
- * @param string $old_status Old post status (empty if the post was just created)
- * @param object $post The post being updated
- * @return bool $send_notif Return true to send the email notification, return false to not
- */
-/*function efx_auto_subscribe_usergroup( $new_status, $old_status, $post ) {
-    global $edit_flow;
-
-    // When the post is first created, you might want to automatically set
-    // all of the user's user groups as following the post
-    if ( 'draft' == $new_status ) {
-        // Get all of the user groups for this post_author
-        $usergroup_ids_to_follow = $edit_flow->user_groups->get_usergroups_for_user( $post->post_author );
-        $usergroup_ids_to_follow = array_map( 'intval', $usergroup_ids_to_follow );
-        $edit_flow->notifications->follow_post_usergroups( $post->ID, $usergroup_ids_to_follow, true );
-    }
-
-    // You could also follow a specific user group based on post_status
-    if ( 'copy-edit' == $new_status ) {
-        // You'll need to get term IDs for your user groups and place them as
-        // comma-separated values
-        $usergroup_ids_to_follow = array(
-            // 18,
-        );
-        $edit_flow->notifications->follow_post_usergroups( $post->ID, $usergroup_ids_to_follow, true );
-    }
-
-    // Return true to send the email notification
-    return $new_status;
-}
-add_filter( 'ef_notification_status_change', 'efx_auto_subscribe_usergroup', 10, 3 );*/
