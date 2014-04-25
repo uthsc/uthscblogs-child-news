@@ -22,6 +22,8 @@
 </footer>
 
 <?php wp_footer(); ?>
+</section>
+
 
 <a class="exit-off-canvas"></a>
 </div><!-- Inner Wrap End -->

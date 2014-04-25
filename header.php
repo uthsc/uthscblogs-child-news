@@ -47,37 +47,29 @@
         </div>
     </div>
 
-    <!--    <div class="row hide-for-large-up search-form">
-        <div class="columns">
-            <?php /*get_search_form() */?>
-        </div>
-    </div>
--->
 </section>
 
-<header class="contain-to-grid show-for-large-up">
-    <!-- Starting the Top-Bar -->
-    <nav class="top-bar" data-topbar>
-        <ul class="title-area">
-            <li class="name">
 
-                <div class="row hide-for-large-up search-form">
-                    <div class="small-9 medium-5 columns">
-                        <?php get_search_form() ?>
-                    </div>
-                </div>
 
-            </li>
-            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-        <section class="top-bar-section">
+<div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+        <nav class="tab-bar hide-for-large-up contain-to-grid">
+            <section class="left-small">
+                <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+            </section>
+
+            <section class="right tap-bar-section right ">
+                <?php get_search_form() ?>
+            </section>
+        </nav>
+
+        <aside class="left-off-canvas-menu">
             <?php
             wp_nav_menu( array(
-                'theme_location' => 'primary',
+                'theme_location' => 'off-canvas',
                 'container' => false,
                 'depth' => 0,
-                'items_wrap' => '<ul class="left">%3$s</ul>',
+                'items_wrap' => '<ul class="off-canvas-list">%3$s</ul>',
                 'fallback_cb' => 'reverie_menu_fallback', // workaround to show a message to set up a menu
                 'walker' => new reverie_walker( array(
                         'in_top_bar' => true,
@@ -87,68 +79,56 @@
             ) );
             ?>
 
-            <?php
-            // Uncomment the following to enable the right menu (additional menu)
-
-            /*wp_nav_menu( array(
-                'theme_location' => 'additional',
-                'container' => false,
-                'depth' => 0,
-                'items_wrap' => '<ul class="right">%3$s</ul>',
-                'walker' => new reverie_walker( array(
-                    'in_top_bar' => true,
-                    'item_type' => 'li',
-                    'menu_type' => 'main-menu'
-                ) ),
-            )
-            );*/
-
-            ?>
-        </section>
-        <section class="top-bar-section right show-for-large-up">
-            <?php get_search_form() ?>
-        </section>
-    </nav>
-    <!-- End of Top-Bar -->
-</header>
-
-<div class="off-canvas-wrap" data-offcanvas>
-    <div class="inner-wrap">
-        <nav class="tab-bar hide-for-large-up">
-            <section class="left-small">
-                <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
-            </section>
-
-            <section class="middle tab-bar-section">
-                <h1 class="title">Foundation</h1>
-            </section>
-
-            <section class="right-small">
-                <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
-            </section>
-        </nav>
-
-        <aside class="left-off-canvas-menu">
-            <ul class="off-canvas-list">
+            <!--<ul class="off-canvas-list">
                 <li><label>Foundation</label></li>
                 <li><a href="#">The Psychohistorians</a></li>
                 <li><a href="#">...</a></li>
-            </ul>
+            </ul>-->
         </aside>
 
-        <aside class="right-off-canvas-menu">
-            <ul class="off-canvas-list">
-                <li><label>Users</label></li>
-                <li><a href="#">Hari Seldon</a></li>
-                <li><a href="#">...</a></li>
-            </ul>
-        </aside>
 
         <section class="main-section">
-            <!-- content goes here -->
-        </section>
 
-        <a class="exit-off-canvas"></a>
+            <header class="contain-to-grid show-for-large-up sticky">
+                <!-- Starting the Top-Bar -->
+                <nav class="top-bar" data-topbar>
+                    <ul class="title-area">
+                        <li class="name">
+
+                            <div class="row hide-for-large-up search-form">
+                                <div class="small-9 medium-5 columns">
+                                    <?php get_search_form() ?>
+                                </div>
+                            </div>
+
+                        </li>
+                        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+                    </ul>
+                    <section class="top-bar-section">
+                        <?php
+                        wp_nav_menu( array(
+                            'theme_location' => 'primary',
+                            'container' => false,
+                            'depth' => 0,
+                            'items_wrap' => '<ul class="left">%3$s</ul>',
+                            'fallback_cb' => 'reverie_menu_fallback', // workaround to show a message to set up a menu
+                            'walker' => new reverie_walker( array(
+                                    'in_top_bar' => true,
+                                    'item_type' => 'li',
+                                    'menu_type' => 'main-menu'
+                                ) ),
+                        ) );
+                        ?>
+
+                    </section>
+                    <section class="top-bar-section right show-for-large-up">
+                        <?php get_search_form() ?>
+                    </section>
+                </nav>
+                <!-- End of Top-Bar -->
+            </header>
+
 
 <!-- Start the main container -->
 <div class="container" role="document">
