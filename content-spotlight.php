@@ -9,7 +9,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('index-card'); ?>>
     <header>
-        <span class="label search-label">Announcement</span>
+        <span class="label search-label">Spotlight</span>
         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php reverie_entry_meta(); ?>
     </header>
