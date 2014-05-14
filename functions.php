@@ -77,11 +77,19 @@ function thd_menu_classes( $classes , $item ){
     return $classes;
 }
 
-function get_the_publisher($id) {
+function get_the_publishers($id) {
 
-    $publisher_link = 'Media Source';
+    $publisher = get_the_terms($id,'media_note_publisher');
 
-    $publishers = get_the_terms($id,'media_note_publisher');
+    return $publisher;
+}
+
+
+function get_the_publisher_link($id) {
+
+    $publisher_link = 'External Media Source';
+
+    $publishers = get_the_publishers($id);
 
     $i = 0;
 
@@ -94,3 +102,32 @@ function get_the_publisher($id) {
 
     return $publisher_link;
 }
+
+function get_the_publisher_logo($id) {
+
+    $publisher_logo = '<img alt="no logo" src="/"/>';
+
+    $publishers = get_the_publishers($id);
+
+    $i = 0;
+
+    foreach ($publishers as $publisher) {
+        if ($i<1){
+            $publisher_logo_url = get_field('publisher_logo', $publisher->taxonomy . '_' . $publisher->term_id);
+            $publisher_logo = '<img src="' . $publisher_logo_url . '" alt="' . $publisher->name . '" />';
+        }
+        $i++;
+    }
+
+    return $publisher_logo;
+}
+
+function add_spotlight_to_archive( $query ) {
+    if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+        $query->set( 'post_type', array(
+            'post', 'nav_menu_item', 'spotlight'
+        ));
+        return $query;
+    }
+}
+add_filter( 'pre_get_posts', 'add_spotlight_to_archive' );

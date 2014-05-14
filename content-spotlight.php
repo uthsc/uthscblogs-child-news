@@ -21,6 +21,7 @@
             <?php } else { ?>
                 <div class="columns"><?php the_excerpt(); ?></div>
             <?php } ?>
+
         </div>
         <p class="entry-tags"><?php  echo get_the_term_list(get_the_ID(),'listserv', 'Sent to:&nbsp;', ', ') ?></p>
     </div>

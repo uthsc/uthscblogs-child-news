@@ -7,8 +7,7 @@
 
     <?php $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1; ?>
     <?php $args = array(
-        'post_type' => 'post',
-        'author' => '16',
+        'post_type' => array('post','spotlight'),
         'paged'  => $paged
     ); ?>
     <?php $the_query = new WP_Query( $args ); ?>
