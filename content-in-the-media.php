@@ -16,6 +16,6 @@
         <div class="row">
             <div class="columns"><p class="entry-tags"><?php  echo get_the_term_list(get_the_ID(),'in-the-media-tags', 'tagged as:&nbsp;', ', ') ?></p></div>
         </div>
-
+        <?php edit_post_link('Edit this \'In the Media\' Item','','<br><br>'); ?>
     </div>
 </article>
