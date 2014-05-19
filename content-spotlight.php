@@ -1,9 +1,7 @@
 <?php
 /**
- * The default template for displaying content. Used for both single and index/archive/search.
+ * The template for displaying spotlight content.
  *
- * @subpackage Reverie
- * @since Reverie 4.0
  */
 ?>
 
@@ -13,6 +11,7 @@
         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php reverie_entry_meta(); ?>
     </header>
+    <br>
     <div class="entry-content">
         <div class="row">
             <?php if ( has_post_thumbnail() ) { ?>
@@ -23,6 +22,7 @@
             <?php } ?>
 
         </div>
-        <p class="entry-tags"><?php  echo get_the_term_list(get_the_ID(),'listserv', 'Sent to:&nbsp;', ', ') ?></p>
+        <?php has_tag() ? the_tags('<p class="entry-tags">Tags: ', ', ', '</p>') : '' ?>
+        <?php edit_post_link('Edit this Spotlight Story','','<br><br>'); ?>
     </div>
 </article>
