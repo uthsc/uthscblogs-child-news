@@ -13,6 +13,7 @@
         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php reverie_entry_meta(); ?>
     </header>
+    <br>
     <div class="entry-content">
         <div class="row">
             <?php if ( has_post_thumbnail() ) { ?>
@@ -23,5 +24,6 @@
             <?php } ?>
         </div>
         <p class="entry-tags"><?php  echo get_the_term_list(get_the_ID(),'listserv', 'Sent to:&nbsp;', ', ') ?></p>
+        <?php edit_post_link('Edit this Announcement','','<br><br>'); ?>
     </div>
 </article>
