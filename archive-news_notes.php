@@ -1,26 +1,16 @@
 <?php get_header(); ?>
 
-<?php
-
-
-?>
-
     <!-- Row for main content area -->
     <div class="small-12 large-8 columns" id="content" role="main">
 
-
-
         <?php
-
 
         if ( have_posts() ) : ?>
 
             <?php /* Start the Loop */ ?>
             <?php while ( have_posts() ) : the_post(); ?>
 
-
                 <?php get_template_part( 'content', 'in-the-media' ); ?>
-
 
             <?php endwhile; ?>
 
@@ -38,8 +28,7 @@
         <?php } ?>
 
     </div>
-<aside id="sidebar" class="small-12 large-4 columns">
-<?php dynamic_sidebar('cs-in-the-media'); ?>
-</aside>
+
+<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>
