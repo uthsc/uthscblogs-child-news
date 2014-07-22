@@ -33,6 +33,8 @@
 
 </div>
 
-<?php get_sidebar(); ?>
+<aside id="sidebar" class="small-12 large-4 columns">
+<?php dynamic_sidebar( 'Homepage Sidebar' ); ?>
+<aside>
 
 <?php get_footer(); ?>
