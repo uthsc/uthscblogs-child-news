@@ -12,3 +12,10 @@ body {
 .search-results .search-label {
 	display: inline-block;
 }
+
+ul.really_simple_twitter_widget li {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-size:  .9em;
+    border-bottom: 1px solid #ddd;
+}
