@@ -26,8 +26,6 @@
         <?php } ?>
 
     </div>
-    <aside id="sidebar" class="small-12 large-4 columns">
-        <?php dynamic_sidebar('cs-in-the-media'); ?>
-    </aside>
 
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>
