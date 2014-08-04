@@ -2,8 +2,10 @@
 
     <!-- Row for main content area -->
     <div class="small-12 large-8 columns" id="content" role="main">
+        <h1 class="entry-title"><?php echo 'UTHSC In The Media: Published By ' . single_term_title( $prefix, $display ); ?></h1><hr />
+        <?php
 
-        <?php if ( have_posts() ) : ?>
+        if ( have_posts() ) : ?>
 
             <?php /* Start the Loop */ ?>
             <?php while ( have_posts() ) : the_post(); ?>

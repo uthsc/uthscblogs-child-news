@@ -3,6 +3,8 @@
     <!-- Row for main content area -->
     <div class="small-12 large-8 columns" id="content" role="main">
 
+        <h1 class="entry-title"><?php echo single_term_title( $prefix, $display ) . ' ' . 'Announcements'; ?></h1><hr />
+
         <?php if ( have_posts() ) : ?>
 
             <?php /* Start the Loop */ ?>

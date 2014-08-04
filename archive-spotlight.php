@@ -2,7 +2,8 @@
 
     <!-- Row for main content area -->
     <div class="small-12 large-8 columns" id="content" role="main">
-
+        <h1 class="entry-title"><?php echo 'UTHSC Spotlight' ?></h1>
+        <p>Stories from the UTHSC Alumni Magazine</p><hr />
         <?php if ( have_posts() ) : ?>
 
             <?php /* Start the Loop */ ?>
