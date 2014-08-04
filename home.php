@@ -34,7 +34,7 @@
 </div>
 
 <aside id="sidebar" class="small-12 large-4 columns">
-<?php dynamic_sidebar( 'Homepage Sidebar' ); ?>
+<?php dynamic_sidebar( 'Homepage' ); ?>
 </aside>
 
 <?php get_footer(); ?>
