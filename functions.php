@@ -16,8 +16,6 @@ function get_uthsc_orbit_slider() {
         // args
         $args = array(
             'numberposts' => -1,
-
-
             'meta_query' => array(
                 array(
                     'key' => 'add_to_slider', // name of custom field
@@ -31,24 +29,17 @@ function get_uthsc_orbit_slider() {
         $the_query = new WP_Query( $args );
 
         // The Loop
-        ?>
-        <?php if( $the_query->have_posts() ): ?>
-            <div class="hide-for-small-down">
-            <ul class="example-orbit" data-orbit>
-                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                    <li>
-                        <img src="<?php echo get_field('slider_image',get_the_id())?>" alt="slider-image" />
-                        <div class="orbit-caption">
-                            <?php echo get_the_title( get_the_id() ) ?>
-                        </div>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-            </div>
-        <?php endif; ?>
-
-        <?php wp_reset_query();  // Restore global post data stomped by the_post(). ?>
-
+        if( $the_query->have_posts() ): ?>
+<div class="hide-for-small-down">
+<ul class="example-orbit" data-orbit>
+<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+<li><img src="<?php echo get_field('slider_image',get_the_id())?>" alt="slider-image" /><div class="orbit-caption"><?php echo get_the_title( get_the_id() ) ?></div></li>
+<?php endwhile; ?>
+</ul>
+</div>
+        <?php
+        endif;
+        wp_reset_query();  // Restore global post data stomped by the_post(). ?>
     <?php }
 }
 
@@ -76,10 +67,6 @@ function thd_menu_classes( $classes , $item ){
 
     return $classes;
 }
-
-
-
-
 function add_spotlight_to_archive( $query ) {
     if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
         $query->set( 'post_type', array(
