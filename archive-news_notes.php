@@ -10,7 +10,7 @@
             <?php /* Start the Loop */ ?>
             <?php while ( have_posts() ) : the_post(); ?>
 
-                <?php get_template_part( 'content', 'in-the-media' ); ?>
+                <?php get_template_part( 'content', 'news_notes' ); ?>
 
             <?php endwhile; ?>
 

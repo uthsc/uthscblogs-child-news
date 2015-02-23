@@ -1,5 +1,6 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class('index-card'); ?>>
     <header>
+        <span class="label search-label">In the Media</span>
         <h2><a href="<?php echo esc_attr( get_field('in_the_media_url', get_the_ID()) ); ?>"><?php the_title(); ?></a></h2>
         <span class="byline author">
             Published by <?php echo get_the_publisher_link(get_the_ID()) ?>
